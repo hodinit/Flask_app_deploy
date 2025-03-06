@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 import folium
+import os
 
 app = Flask(__name__)
 
@@ -17,4 +18,6 @@ def map():
     m.save('templates/map.html')
     return render_template("map.html")
 
-app.run(debug=True)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))  # Get the port from environment variables
+    app.run(host="0.0.0.0", port=port, debug=True)
